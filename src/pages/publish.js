@@ -38,7 +38,10 @@ export default function({display,userid}){
     }
     if(display ===true){
         return(
-            <div>
+            <div >
+                <h3 className="container">You are logged in, you can enter your books from the form below</h3>
+                <div className="container">
+
                 <form onSubmit={handleSubmit}>
                     <input 
                     type="text"
@@ -62,21 +65,26 @@ export default function({display,userid}){
                     onChange={handleChange}
                     ></input>
                     
-                    <button type="submit" name="submit">Publish</button>
+                    <button className="btn-submit" type="submit" name="submit">Publish</button>
                 </form>
-                {msg && <h2>Fields cannot be empty</h2>}
-                {books[userid] && <div>
-                    <h2>Books Published by you</h2>
-                    <div className="row">
+                {msg && <h3>Fields cannot be empty</h3>}
+                </div>
+                {books[userid] && <div >
+                    <h3 className="txt-center">Books Published by you</h3>
+                    <div className="row books-container">
                     {books[userid].map(ele=>{
                         return(
                             <div key={ele[5]} className="card column">
                                 <div className="text">
-                                    <h2> {ele[0]} </h2>
-                                    <h4> author:- {ele[1]} </h4>
-                                    <h4> price:- {ele[2]}</h4>
-                                    <h4><i> published by</i> {ele[3]}</h4>
-                                    <h4><i>Date of publish</i> {ele[4]}</h4>
+                                    <h4 className="book-title"> {ele[0]} </h4>
+                                    <div className="auth-div">
+                                        <h4 className="by">by</h4>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <h4 className="author"> {ele[1]}</h4>
+                                    </div>
+                                    <h5> price:- Rs. {ele[2]}</h5>
+                                    <h5><i> published by</i> {ele[3]}</h5>
+                                    <h5><i>Date of publish</i> {ele[4]}</h5>
                                 </div>
                             </div>
                         )

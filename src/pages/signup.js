@@ -45,7 +45,7 @@ function Signup({display,setdismap}){
     return (
         <div>
         
-        <div>
+        <div className="container">
             <form onSubmit={handleSubmit}>
                 <input 
                 type="text"
@@ -68,7 +68,7 @@ function Signup({display,setdismap}){
                 value={data["confirmpass"]}
                 onChange={handleChange}            
                 ></input>
-                <button type="submit" name="submit">Submit</button>
+                <button type="submit" className="btn-submit" name="submit">Submit</button>
             </form>
         </div>
         {msg[1] &&  <h1 className="message">{msg[0]}</h1>}

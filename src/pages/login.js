@@ -1,6 +1,9 @@
-import React, {  useState } from "react"
+import React, {  useContext, useState } from "react"
+import { loggedIn } from "../App"
 
-export default function({display,setloggedin}){
+export default function({display,setloggedin, setloginInfo}){
+    const LoggedIn = useContext(loggedIn)
+    console.log(LoggedIn)
     const [data,setData]= useState({
         userid:"",
         password:""
@@ -15,14 +18,14 @@ export default function({display,setloggedin}){
     function handleChange(e){
         setData((prevData)=>{return {...prevData,[e.target.name] : e.target.value}})
     }
-
     function handleSubmit(e){
         e.preventDefault()
-        console.log(users)
+        // console.log(users)
         if(users.hasOwnProperty(data.userid)===true){
             if(data.password===users[data.userid]){
                 setloggedin(true,data.userid)
                 setmsg(["",false])
+                setloginInfo({loggedinUser:data.userid, loggedIn})
             }else{
                 setmsg(["Incorrect password",true])
             }
@@ -34,8 +37,7 @@ export default function({display,setloggedin}){
 
     if(display===true){
         return (
-            <div>
-            
+            <div className="container">            
             <form onSubmit={handleSubmit}>
                 <input 
                 type="text"
@@ -52,7 +54,7 @@ export default function({display,setloggedin}){
                 onChange={handleChange}            
                 ></input>
                 
-                <button type="submit" name="submit">Submit</button>
+                <button type="submit" className="btn-submit" name="submit">Submit</button>
             </form>
             {msg[1] && <h1>{msg[0]}</h1>}
     

@@ -36,6 +36,7 @@ export default function(props){
 
     return (
         <>
+        <h1>Enter a book in our store</h1>
         <form onSubmit={handleSubmit}>
             <input 
             type="number"
